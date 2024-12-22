@@ -1,0 +1,33 @@
+Diabetes  has been a major global heath threat  and millions of people around the world stays under the condition of this disease 
+along with the science and technology have made a huge progress in medical sector . In the medical science field ML(Machine Learning)
+has brought  significant changes . I have gone through  three different research about diabetes  prediction with ML . Here I am giving a brief  those papers .
+
+In the first publication [1], a dataset is used to classify or predict if a person has diabetes or not. Comparisons between the classification of ML 
+and neural-network models with counterfeit are developed. This paper[1] also compares accuracy and precision, proving the suitability of the suggested framework. 
+A quick overview of the Related Work from a related field is provided in the remaining research paper. The material and implementation techniques are also included in the article. 
+Results and a discussion of the statistical variances of several machine learning classifiers that are employed for further prediction are presented later in this study [1].
+The results of the suggested effort are finally laid out in the conclusion and future scope.
+
+The second study [2] offers a thorough review of current developments in diabetes categorisation using machine learning algorithms, stressing their advantages, disadvantages,
+and potential future developments. There is a thorough discussion of a variety of machine learning techniques, support vector machines, decision trees, random forests, 
+artificial neural networks, and ensemble approaches. Additionally, the evaluation metrics, feature selection strategies, and data preprocessing approaches used in 
+diabetes classification research are reviewed. Furthermore, issues including interpretability, data imbalance, and generalisation across various populations are addressed.
+Lastly, possible directions for further study are suggested in order to improve the precision and usefulness of ML-based diabetes categorisation systems.
+
+In the third paper [3], the paper does a study on different machine learning classification algorithms for predicting diabetes. The different classification 
+algorithms are k- Nearest Neighbor, Naive Bayes, Random Forest, Support Vector Machine, Decision Tree, etc are done on diabetes data set.
+
+
+
+References:
+[1] V. Patil and D. R. Ingle, "Comparative Analysis of Different ML Classification Algorithms with Diabetes Prediction through Pima Indian Diabetics Dataset,"
+2021 International Conference on Intelligent Technologies (CONIT), Hubli, India, 2021, pp. 1-9, doi: 10.1109/CONIT51480.2021.9498361.
+https://ieeexplore.ieee.org/document/9498361
+
+[2 ] J. A. Mosa and A. M. Abdulazeez, “A Review on Diabetes Classification Based on Machine Learning Algorithms,” 
+Indonesian Journal of Computer Science, vol. 13, no. 2, pp. 2445-2456, 2024. 
+https://www.researchgate.net/publication/382952235_A_Review_on_Diabetes_Classification_Based_on_Machine_Learning_Algorithms
+
+[3 ] Jiby T C, 2021, A Study on Various Machine Learning Classification Algorithms for Diabetes Prediction,
+INTERNATIONAL JOURNAL OF ENGINEERING RESEARCH & TECHNOLOGY (IJERT) Volume 10, Issue 08 (August 2021),
+https://www.ijert.org/a-study-on-various-machine-learning-classification-algorithms-for-diabetes-prediction
