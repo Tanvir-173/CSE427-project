@@ -1,0 +1,97 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
+
+# ignore the warning messages
+import warnings
+warnings.filterwarnings('ignore')
+
+path="/content/drive/MyDrive/diabetes_prediction_dataset.csv"
+df=pd.read_csv(path)
+df.head()
+
+categorical_columns = df.select_dtypes(include=['object', 'category']).columns
+print("Categorical columns:", categorical_columns)
+
+for col in df.select_dtypes(include=['object', 'category']):
+    df[col] = df[col].astype('category').cat.codes
+df.head()
+
+df = pd.DataFrame(df)
+
+# Check for missing values
+print("Missing values in each column:")
+print(df.isnull().sum())
+
+# Replace missing values with the mean of the respective column
+df.fillna(df.mean(), inplace=True)
+print(df)
+
+# Split the data into 80-20 train-test split
+
+X = df.drop(['diabetes'], axis=1) # features
+y = df['diabetes'] # target column
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Implementing Decision Tree Classifier
+decision_tree_model = DecisionTreeClassifier(criterion='gini', max_depth = 10, random_state=42)
+decision_tree_model.fit(X_train, y_train)
+
+# Predictions on the test set
+y_pred_dt = decision_tree_model.predict(X_test)
+
+# Evaluate the model
+print("Decision Tree Classifier Accuracy:", accuracy_score(y_test, y_pred_dt))
+#accuracy = no.of correctly predicted data / total test data
+
+# Visualize the Decision Tree
+plt.figure(figsize=(60, 40))
+plot_tree(decision_tree_model, feature_names=X.columns, class_names=['having diabetes', 'not having diabetes'], filled=True, rounded=True)
+plt.title('Decision Tree Visualization')
+plt.show()
+
+# Implementing Random Forest Classifier
+random_forest_model = RandomForestClassifier(n_estimators=100, max_depth = 5, criterion='gini', bootstrap=True, random_state=42)
+random_forest_model.fit(X_train, y_train)
+
+# Predictions on the test set
+y_pred_rf = random_forest_model.predict(X_test)
+
+# Evaluate the model
+print("Random Forest Classifier Accuracy:", accuracy_score(y_test, y_pred_rf))
+
+# Visualize one of the decision trees (first tree) in the Forest
+plt.figure(figsize=(60, 40))
+plot_tree(random_forest_model.estimators_[0], feature_names=X.columns, class_names=['having diabetes', 'not having diabetes'], filled=True, rounded=True)
+plt.title('First Decision Tree Visualization (from Random Forest)')
+plt.show()
+
+abc = AdaBoostClassifier(n_estimators=5,learning_rate=1, random_state = 42)
+model = abc.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+# plot_adaboost(X, y, model)
+print("Accuracy score (training): {0:.3f}".format(model.score(X_train, y_train)))
+print("Accuracy score (validation): {0:.3f}".format(model.score(X_test, y_test)))
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+k = 5  # choose a different k value
+knn = KNeighborsClassifier(n_neighbors=k, metric = 'euclidean')
+knn.fit(X_train, y_train)
+
+y_pred = knn.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy:.2f}')
